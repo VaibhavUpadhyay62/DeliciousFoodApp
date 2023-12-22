@@ -14,21 +14,28 @@ const Popular = () => {
   }, []);
 
   const getPopular = async () => {
-    const check = localStorage.getItem("Popular");
+    // const check = localStorage.getItem("Popular");
 
-    if (check) {
-      setPopular(JSON.parse(check));
-    } else {
-      const api = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&cuisine=Italian,Chinese,Mexican`
-      );
+    // if (check) {
+    //   setPopular(JSON.parse(check));
+    // } else {
+    // const api = await fetch(
+    //   `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&cuisine=Italian,Chinese,Mexican`
+    // );
 
-      const data = await api.json();
+    //   const data = await api.json();
 
-      localStorage.setItem("Popular", JSON.stringify(data.recipes));
-      console.log(data);
-      setPopular(data.recipes);
-    }
+    //   localStorage.setItem("Popular", JSON.stringify(data.recipes));
+    //   console.log(data);
+    //   setPopular(data.recipes);
+    // }
+
+    const api = await fetch(
+      `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&cuisine=Italian,Chinese,Mexican`
+    );
+    const data = await api.json();
+    setPopular(data.recipes);
+    console.log(data);
   };
 
   return (
